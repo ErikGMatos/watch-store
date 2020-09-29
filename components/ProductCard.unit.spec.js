@@ -44,7 +44,7 @@ describe('ProductCard - unit', () => {
   });
 
   it('should emit the event addToCart with product object when button gets clicked', async () => {
-    const { wrapper, product } = mountProductCard();
+    const { wrapper } = mountProductCard();
 
     await wrapper.find('button').trigger('click');
 
