@@ -44,12 +44,12 @@ describe('ProductCard - unit', () => {
   });
 
   it('should emit the event addToCart with product object when button gets clicked', async () => {
-    const { wrapper } = mountProductCard();
+    const { wrapper, product } = mountProductCard();
 
     await wrapper.find('button').trigger('click');
 
-    // expect(wrapper.emitted().addToCart).toBeTruthy();
-    // expect(wrapper.emitted().addToCart.length).toBe(1);
-    // expect(wrapper.emitted().addToCart[0]).toEqual([{ product }]);
+    expect(wrapper.emitted().addToCart).toBeTruthy();
+    expect(wrapper.emitted().addToCart.length).toBe(1);
+    expect(wrapper.emitted().addToCart[0]).toEqual([{ product }]);
   });
 });
