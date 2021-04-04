@@ -33,7 +33,8 @@
           <div class="flex items-center justify-end w-full">
             <button
               class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
-              @click="toogleCart"
+              data-testid="toggle-button"
+              @click="toggleCart"
             >
               <svg
                 class="h-5 w-5"
@@ -97,7 +98,7 @@
         </nav>
       </div>
     </header>
-    <cart :products="products" :is-open="isCartOpen" @close="toogleCart" />
+    <cart :products="products" :is-open="isCartOpen" @close="toggleCart" />
     <nuxt />
     <footer class="bg-gray-200">
       <div
@@ -114,25 +115,24 @@
 
 <script>
 import Cart from '@/components/Cart';
-import { CartManager } from '@/managers/CartManager';
-const cartManager = new CartManager();
+
 export default {
   components: { Cart },
 
   computed: {
     isCartOpen() {
-      return cartManager.getState().open;
+      return this.$cart.getState().open;
     },
     products() {
-      return cartManager.getState().items;
+      return this.$cart.getState().items;
     },
   },
   methods: {
-    toogleCart() {
-      if (cartManager.getState().open) {
-        cartManager.close();
+    toggleCart() {
+      if (this.$cart.getState().open) {
+        this.$cart.close();
       } else {
-        cartManager.open();
+        this.$cart.open();
       }
     },
   },
